@@ -36,6 +36,9 @@ wait_on_run synth_1
 if {$ip_out_p=="1"} { 
 file delete -force ../my_ip/$project_name
 file mkdir ../my_ip/$project_name
+file mkdir ../my_ip/$project_name/misc
+file copy ../sources/LOGO/logo.png ../my_ip/$project_name/misc/logo.png
+
 ipx::package_project -root_dir ../my_ip/$project_name -vendor xilinx.com -library user -taxonomy /UserIP -import_files -set_current false
 ipx::unload_core ../my_ip/$project_name/component.xml
 ipx::edit_ip_in_project -upgrade true -name tmp_edit_project -directory ../my_ip/$project_name ../my_ip/$project_name/component.xml
@@ -67,6 +70,17 @@ set_property widget {comboBox} [ipgui::get_guiparamspec -name "check_mode" -comp
 set_property value_validation_list {0 1 2 3 4} [ipx::get_user_parameters check_mode -of_objects [ipx::current_core]]
 set_property widget {comboBox} [ipgui::get_guiparamspec -name "stop_mode" -component [ipx::current_core] ]
 set_property value_validation_list {0 1 2} [ipx::get_user_parameters stop_mode -of_objects [ipx::current_core]]
+
+cd ../my_ip/$project_name
+ipx::add_file_group -type misc {} [ipx::current_core]
+ipx::add_file ./misc/logo.png [ipx::get_file_groups xilinx_miscfiles -of_objects [ipx::current_core]]
+set_property type image [ipx::get_files misc/logo.png -of_objects [ipx::get_file_groups xilinx_miscfiles -of_objects [ipx::current_core]]]
+ipx::add_file_group -type utility {} [ipx::current_core]
+ipx::add_file ./misc/logo.png [ipx::get_file_groups xilinx_utilityxitfiles -of_objects [ipx::current_core]]
+set_property type image [ipx::get_files misc/logo.png -of_objects [ipx::get_file_groups xilinx_utilityxitfiles -of_objects [ipx::current_core]]]
+set_property type LOGO [ipx::get_files misc/logo.png -of_objects [ipx::get_file_groups xilinx_utilityxitfiles -of_objects [ipx::current_core]]]
+cd ..
+cd ../project
 
 ipx::update_source_project_archive -component [ipx::current_core]
 ipx::create_xgui_files [ipx::current_core]

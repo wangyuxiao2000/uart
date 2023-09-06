@@ -37,7 +37,8 @@ UART #(.system_clk(50000000),
        .data_bits(8),   
        .check_mode(1), 
        .stop_mode(0),
-       .fifo_deepth(16)	   
+       .tx_fifo_deepth(16),
+       .rx_fifo_deepth(16)
 	   ) i1 (.clk(clk),
            .rst_n(rst_n),
            .tx_en(1'b1),

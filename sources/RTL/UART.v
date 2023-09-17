@@ -8,7 +8,7 @@
 `timescale 1 ns / 1 ps
 
 module UART (clk,rst_n,tx_en,s_axis_tdata,s_axis_tvalid,s_axis_tready,tx,rx_en,rx,m_axis_tready,m_axis_tdata,m_axis_tvalid,m_axis_tuser);
-/******************************************工作参数设置******************************************/
+/*******************************************工作参数设置******************************************/
 parameter system_clk=50_000000;    /*定义系统时钟频率*/
 parameter band_rate=9600;          /*定义波特率*/
 parameter data_bits=8;             /*定义数据位数,在5-8取值*/

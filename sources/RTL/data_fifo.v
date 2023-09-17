@@ -8,11 +8,10 @@
 `timescale 1 ns / 1 ps
 
 module data_fifo (clk,rst_n,s_axis_tdata,s_axis_tvalid,s_axis_tready,m_axis_tdata,m_axis_tvalid,m_axis_tready);
-/******************************************工作参数设置******************************************/
+/*******************************************工作参数设置******************************************/
 parameter Width=8;               /*定义FIFO宽度*/
 parameter Deepth=16;             /*定义FIFO深度(2的n次方)*/
 /************************************************************************************************/
-
 input clk;                       /*系统时钟*/
 input rst_n;                     /*低电平异步复位信号*/
 input [Width-1:0] s_axis_tdata;  /*输入数据*/

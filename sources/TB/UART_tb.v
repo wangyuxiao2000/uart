@@ -26,6 +26,7 @@ wire s_tready;
 
 wire [`response_width-1:0] m_tdata;
 wire m_tvalid;
+wire check_flag;
 reg m_tready;
 /************************************************************/
 
@@ -51,7 +52,7 @@ UART #(.system_clk(50000000),
            .m_axis_tready(m_tready),
            .m_axis_tdata(m_tdata),
            .m_axis_tvalid(m_tvalid),
-           .check_flag(check_flag)
+           .m_axis_tuser(check_flag)
           );	
 /************************************************************/
 

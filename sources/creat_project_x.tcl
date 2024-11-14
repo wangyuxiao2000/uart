@@ -2,6 +2,8 @@
 set project_name UART
 # 设置芯片型号(将[]替换为芯片型号)
 set chip_type xc7a35tcsg324-1
+# 设定IP版本
+set ip_verion 1.0
 # 是否将当前设计导出为自定义IP核(ip_out_p=1进行)
 set ip_out_p 1
 # 是否进行综合操作(synth_p=1进行)
@@ -43,7 +45,7 @@ ipx::unload_core ../my_ip/$project_name/component.xml
 ipx::edit_ip_in_project -upgrade true -name tmp_edit_project -directory ../my_ip/$project_name ../my_ip/$project_name/component.xml
 
 set_property name $project_name [ipx::current_core]
-set_property version 1.1 [ipx::current_core]
+set_property version $ip_verion [ipx::current_core]
 set_property display_name $project_name [ipx::current_core]
 set_property description {wyxee2000@163.com} [ipx::current_core]
 
@@ -61,7 +63,7 @@ set_property tooltip {unit:bps} [ipgui::get_guiparamspec -name "band_rate" -comp
 set_property widget {textEdit} [ipgui::get_guiparamspec -name "check_mode" -component [ipx::current_core] ]
 set_property tooltip {0:None, 1:Even, 2:Odd, 3:Space, 4:Mark} [ipgui::get_guiparamspec -name "check_mode" -component [ipx::current_core] ]
 set_property widget {textEdit} [ipgui::get_guiparamspec -name "stop_mode" -component [ipx::current_core] ]
-set_property tooltip {0:1bit, 1:1.5bits, 2:2bits} [ipgui::get_guiparamspec -name "stop_mode" -component [ipx::current_core] ]
+set_property tooltip {0: 1bit, 1: 1.5bits, 2: 2bits} [ipgui::get_guiparamspec -name "stop_mode" -component [ipx::current_core] ]
 set_property widget {textEdit} [ipgui::get_guiparamspec -name "tx_fifo_deepth" -component [ipx::current_core] ]
 set_property tooltip {must be 0 or 2^n} [ipgui::get_guiparamspec -name "tx_fifo_deepth" -component [ipx::current_core] ]
 set_property widget {textEdit} [ipgui::get_guiparamspec -name "rx_fifo_deepth" -component [ipx::current_core] ]

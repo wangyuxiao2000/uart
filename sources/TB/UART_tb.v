@@ -3,7 +3,7 @@
 //Author  : WangYuxiao
 //Email   : wyxee2000@163.com
 //Data    : 2022.9.1
-//Version : V 1.1
+//Version : V 1.0
 /*************************************************************/
 `timescale 1 ns / 1 ps       /*定义 仿真时间单位/精度*/
 `define Period 20            /*定义 时钟周期*/
